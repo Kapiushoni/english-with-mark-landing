@@ -1,0 +1,20 @@
+---
+import type { Dict } from '../i18n/ua';
+import Icon from './Icon.astro';
+const { t } = Astro.props as { t: Dict };
+---
+<section id="inside" class="bg-ink py-16 text-cream sm:py-24">
+  <div class="wrap">
+    <p class="kicker">{t.inside.kicker}</p>
+    <h2 class="h2 mt-4 max-w-3xl">{t.inside.title}</h2>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {t.inside.items.map((it, i) => (
+        <div class:list={['rounded-3xl p-6 sm:p-7', i === 1 ? 'bg-accent text-white' : 'bg-white/5 ring-1 ring-white/10']}>
+          <Icon name={it.icon} class={i === 1 ? 'size-9 text-white' : 'size-9 text-sun'} />
+          <h3 class="mt-8 font-serif text-2xl leading-tight font-semibold">{it.t}</h3>
+          <p class:list={['mt-3 leading-relaxed', i === 1 ? 'text-white/85' : 'text-cream/65']}>{it.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

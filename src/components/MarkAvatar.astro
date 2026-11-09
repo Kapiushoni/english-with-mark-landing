@@ -1,0 +1,26 @@
+---
+// Вигаданий Марк: стилізована векторна ілюстрація, не фото реальної людини
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+const clip = 'mark-clip-' + Math.random().toString(36).slice(2, 8);
+---
+<svg class={cls} viewBox="0 0 320 320" role="img" aria-label="Mark — illustration">
+  <defs><clipPath id={clip}><circle cx="160" cy="160" r="156" /></clipPath></defs>
+  <circle cx="160" cy="160" r="156" fill="#f4c34a" />
+  <g clip-path={`url(#${clip})`}>
+  <path d="M30 330c6-76 58-122 130-122s124 46 130 122z" fill="#e2552c" />
+  <path d="M128 210h64l-8 26h-48z" fill="#fffaf3" opacity=".9" />
+  <rect x="140" y="178" width="40" height="40" rx="14" fill="#e9b48f" />
+  <ellipse cx="160" cy="138" rx="58" ry="64" fill="#f1c4a1" />
+  <path d="M100 128c-4-44 26-70 62-70 38 0 64 24 60 66-10-18-30-30-56-30-28 0-50 14-66 34z" fill="#3a2a22" />
+  <path d="M112 166c8 34 28 46 48 46s40-12 48-46c-6 8-20 12-48 12s-42-4-48-12z" fill="#3a2a22" opacity=".85" />
+  <g fill="none" stroke="#1f1a17" stroke-width="4">
+    <rect x="114" y="122" width="38" height="28" rx="12" />
+    <rect x="168" y="122" width="38" height="28" rx="12" />
+    <path d="M152 134h16" />
+  </g>
+  <circle cx="133" cy="137" r="4" fill="#1f1a17" />
+  <circle cx="187" cy="137" r="4" fill="#1f1a17" />
+  <path d="M146 176q14 10 28 0" fill="none" stroke="#1f1a17" stroke-width="4" stroke-linecap="round" />
+  </g>
+</svg>

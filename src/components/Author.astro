@@ -1,0 +1,26 @@
+---
+import type { Dict } from '../i18n/ua';
+import MarkAvatar from './MarkAvatar.astro';
+const { t } = Astro.props as { t: Dict };
+const a = t.author;
+---
+<section class="pb-16 sm:pb-24">
+  <div class="wrap">
+    <div class="card grid items-center gap-10 overflow-hidden p-6 sm:p-10 md:grid-cols-[auto_1fr] md:gap-14">
+      <div class="relative mx-auto w-48 sm:w-60">
+        <MarkAvatar class="w-full" />
+        <span class="absolute -right-2 bottom-2 rotate-6 rounded-xl bg-ink px-3 py-1 text-xs font-semibold text-cream">Hi, I'm Mark 👋</span>
+      </div>
+      <div>
+        <p class="kicker">{a.kicker}</p>
+        <h2 class="h2 mt-4">{a.name}<span class="text-accent">.</span></h2>
+        <p class="mt-1 text-lg font-medium text-muted">{a.role}</p>
+        {a.bio.map((p) => <p class="mt-4 max-w-2xl leading-relaxed text-muted">{p}</p>)}
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {a.facts.map((f) => <li class="rounded-full border border-ink/15 px-3.5 py-1.5 text-sm font-medium">{f}</li>)}
+        </ul>
+        <blockquote class="mt-8 border-l-4 border-sun pl-4 font-serif text-xl italic sm:text-2xl">{a.quote}</blockquote>
+      </div>
+    </div>
+  </div>
+</section>

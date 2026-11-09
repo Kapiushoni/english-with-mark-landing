@@ -1,0 +1,20 @@
+---
+import type { Dict } from '../i18n/ua';
+import { BOT_URL } from '../i18n/ua';
+import Icon from './Icon.astro';
+const { t } = Astro.props as { t: Dict };
+---
+<section class="pb-16 sm:pb-24">
+  <div class="wrap">
+    <div class="relative overflow-hidden rounded-[2rem] bg-accent px-6 py-14 text-center text-white sm:px-12 sm:py-20">
+      <span class="pointer-events-none absolute -top-16 -left-16 size-56 rounded-full bg-sun/40" aria-hidden="true"></span>
+      <span class="pointer-events-none absolute -right-10 -bottom-20 size-64 rounded-full border-[28px] border-white/15" aria-hidden="true"></span>
+      <h2 class="h2 relative mx-auto max-w-3xl">{t.final.title}</h2>
+      <p class="relative mt-4 text-lg text-white/85">{t.final.lead}</p>
+      <a href={BOT_URL} target="_blank" rel="noopener" class="relative mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 text-lg font-semibold text-cream shadow-[0_6px_0_0_rgba(0,0,0,.35)] transition hover:-translate-y-0.5 active:translate-y-0.5">
+        <Icon name="tg" class="size-5" />{t.final.cta}
+      </a>
+      <p class="relative mt-4 text-sm text-white/75">@mark_english_demo_bot</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import type { Dict } from '../i18n/ua';
+import { BOT_URL } from '../i18n/ua';
+import Icon from './Icon.astro';
+const { t } = Astro.props as { t: Dict };
+const p = t.pricing;
+---
+<section id="pricing" class="bg-sand/60 py-16 sm:py-24">
+  <div class="wrap">
+    <div class="text-center">
+      <p class="kicker">{p.kicker}</p>
+      <h2 class="h2 mx-auto mt-4 max-w-2xl">{p.title}</h2>
+      <p class="mt-4 text-muted">{p.note}</p>
+    </div>
+    <div class="mt-12 grid items-stretch gap-5 md:grid-cols-3">
+      {p.plans.map((plan) => {
+        const hot = 'popular' in plan && plan.popular;
+        return (
+          <div class:list={['relative flex flex-col rounded-3xl p-7 sm:p-8', hot ? 'bg-ink text-cream md:-my-4 md:py-12 shadow-xl' : 'card']}>
+            {hot && <span class="absolute -top-3 left-7 rounded-full bg-sun px-3 py-1 text-xs font-bold text-ink">{plan.popular}</span>}
+            <h3 class="text-lg font-semibold">{plan.name}</h3>
+            <p class="mt-4 flex items-baseline gap-2">
+              <span class="font-serif text-5xl font-semibold tracking-tight">{plan.price}</span>
+              <Icon name="star" class="size-7 self-center text-sun" />
+            </p>
+            <p class:list={['mt-2 text-sm', hot ? 'text-cream/70' : 'text-muted']}>{plan.per}</p>
+            <ul class="mt-7 flex-1 space-y-3">
+              {plan.features.map((f) => (
+                <li class="flex gap-3 text-[0.95rem]">
+                  <Icon name="tick" class={hot ? 'mt-0.5 size-5 shrink-0 text-sun' : 'mt-0.5 size-5 shrink-0 text-accent'} />{f}
+                </li>
+              ))}
+            </ul>
+            <a href={BOT_URL} target="_blank" rel="noopener" class:list={['mt-8 w-full', hot ? 'btn-primary' : 'btn-ghost']}>
+              {p.cta} — {plan.price} ⭐
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

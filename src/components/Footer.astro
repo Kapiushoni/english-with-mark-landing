@@ -1,0 +1,13 @@
+---
+import type { Dict } from '../i18n/ua';
+import { DEV } from '../i18n/ua';
+const { t } = Astro.props as { t: Dict };
+---
+<footer class="border-t border-ink/10 py-8">
+  <div class="wrap flex flex-col items-center justify-between gap-3 text-sm text-muted sm:flex-row">
+    <p><span class="font-serif font-bold text-ink">Mark<span class="text-accent">.</span></span> · {t.footer.rights}</p>
+    <p class="text-xs">
+      {t.footer.demo} {DEV.name} <a href={DEV.url} target="_blank" rel="noopener" class="font-medium text-ink underline decoration-accent/50 underline-offset-2 hover:decoration-accent">{DEV.handle}</a>
+    </p>
+  </div>
+</footer>

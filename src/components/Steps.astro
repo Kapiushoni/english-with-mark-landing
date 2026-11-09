@@ -1,0 +1,23 @@
+---
+import type { Dict } from '../i18n/ua';
+const { t } = Astro.props as { t: Dict };
+---
+<section class="py-16 sm:py-24">
+  <div class="wrap">
+    <p class="kicker">{t.steps.kicker}</p>
+    <h2 class="h2 mt-4 max-w-3xl">{t.steps.title}</h2>
+    <ol class="relative mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
+      <span class="absolute top-6 left-6 hidden w-[calc(100%-3rem)] border-t-2 border-dashed border-ink/20 md:block" aria-hidden="true"></span>
+      <span class="absolute top-6 left-6 h-[calc(100%-3rem)] border-l-2 border-dashed border-ink/20 md:hidden" aria-hidden="true"></span>
+      {t.steps.items.map((s, i) => (
+        <li class="relative flex gap-5 md:block">
+          <span class="relative z-10 grid size-12 shrink-0 place-items-center rounded-full border-2 border-ink bg-cream font-serif text-xl font-semibold">{i + 1}</span>
+          <div class="md:mt-6">
+            <h3 class="text-lg font-semibold">{s.t}</h3>
+            <p class="mt-2 leading-relaxed text-muted">{s.d}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

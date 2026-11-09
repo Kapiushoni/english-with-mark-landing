@@ -1,0 +1,31 @@
+---
+import type { Dict } from '../i18n/ua';
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Audience from './Audience.astro';
+import Inside from './Inside.astro';
+import Steps from './Steps.astro';
+import Author from './Author.astro';
+import Pricing from './Pricing.astro';
+import Reviews from './Reviews.astro';
+import Faq from './Faq.astro';
+import FinalCta from './FinalCta.astro';
+import Footer from './Footer.astro';
+const { t } = Astro.props as { t: Dict };
+---
+<Base t={t}>
+  <Header t={t} />
+  <main>
+    <Hero t={t} />
+    <Audience t={t} />
+    <Inside t={t} />
+    <Steps t={t} />
+    <Author t={t} />
+    <Pricing t={t} />
+    <Reviews t={t} />
+    <Faq t={t} />
+    <FinalCta t={t} />
+  </main>
+  <Footer t={t} />
+</Base>

@@ -1,0 +1,22 @@
+---
+import type { Dict } from '../i18n/ua';
+const { t } = Astro.props as { t: Dict };
+const tones = ['bg-sun/60', 'bg-sage/60', 'bg-sky/70', 'bg-accent/20'];
+---
+<section id="audience" class="py-16 sm:py-24">
+  <div class="wrap">
+    <p class="kicker">{t.audience.kicker}</p>
+    <h2 class="h2 mt-4 max-w-3xl">{t.audience.title}</h2>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {t.audience.items.map((it, i) => (
+        <div class="card flex gap-5 p-6 sm:p-7">
+          <span class:list={['grid size-11 shrink-0 place-items-center rounded-2xl font-serif text-lg font-semibold', tones[i]]}>0{i + 1}</span>
+          <div>
+            <h3 class="text-lg font-semibold">{it.t}</h3>
+            <p class="mt-2 leading-relaxed text-muted">{it.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

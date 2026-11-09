@@ -1,0 +1,30 @@
+---
+import type { Dict } from '../i18n/ua';
+const { t } = Astro.props as { t: Dict };
+const r = t.reviews;
+const tones = ['bg-sun', 'bg-sage', 'bg-sky'];
+const tilt = ['md:-rotate-1', 'md:rotate-1 md:translate-y-4', 'md:-rotate-[0.5deg]'];
+---
+<section class="py-16 sm:py-24">
+  <div class="wrap">
+    <p class="kicker">{r.kicker}</p>
+    <h2 class="h2 mt-4">{r.title}</h2>
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {r.items.map((it, i) => (
+        <figure class:list={['card relative flex flex-col p-6 sm:p-7', tilt[i]]}>
+          <span class="absolute top-5 right-5 rounded-full border border-dashed border-ink/30 px-2.5 py-0.5 text-[0.7rem] font-semibold tracking-wider text-muted uppercase">{r.demo}</span>
+          <span class="font-serif text-5xl leading-none text-accent" aria-hidden="true">“</span>
+          <blockquote class="mt-2 flex-1 leading-relaxed">{it.t}</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3">
+            <span class:list={['grid size-10 place-items-center rounded-full font-semibold', tones[i]]} aria-hidden="true">{it.name[0]}</span>
+            <span>
+              <span class="block font-semibold">{it.name}</span>
+              <span class="block text-sm text-muted">{it.meta}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="mt-10 text-center text-sm text-muted">* {r.disclaimer}</p>
+  </div>
+</section>

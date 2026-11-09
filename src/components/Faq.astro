@@ -1,0 +1,34 @@
+---
+import type { Dict } from '../i18n/ua';
+import Icon from './Icon.astro';
+import { DEV } from '../i18n/ua';
+const { t } = Astro.props as { t: Dict };
+---
+<section id="faq" class="pb-16 sm:pb-24">
+  <div class="wrap grid gap-10 lg:grid-cols-[1fr_1.6fr]">
+    <div>
+      <p class="kicker">{t.faq.kicker}</p>
+      <h2 class="h2 mt-4">{t.faq.title}</h2>
+    </div>
+    <div class="divide-y divide-ink/10 border-y border-ink/10">
+      {t.faq.items.map((f, i) => (
+        <details class="group" open={i === 0}>
+          <summary class="flex cursor-pointer items-center justify-between gap-6 py-5 text-left text-lg font-semibold">
+            {f.q}
+            <span class="faq-icon grid size-8 shrink-0 place-items-center rounded-full border border-ink/20 transition-transform duration-200 group-open:bg-ink group-open:text-cream">
+              <Icon name="plus" class="size-4" />
+            </span>
+          </summary>
+          <p class="pr-12 pb-6 leading-relaxed text-muted">
+            {f.a.split('{support}').map((part, j) => (
+              <>
+                {j > 0 && <a href={DEV.url} target="_blank" rel="noopener" class="font-medium text-ink underline decoration-accent/50 underline-offset-2 hover:decoration-accent">{t.faq.support}</a>}
+                {part}
+              </>
+            ))}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
