@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-// Після деплою заміни на свій домен Vercel (потрібно для абсолютних OG-посилань)
+// Продакшн-домен Vercel (потрібен для абсолютних canonical/OG/hreflang-посилань)
 export default defineConfig({
-  site: 'https://english-with-mark.vercel.app',
+  site: 'https://english-mark-demo.vercel.app',
   trailingSlash: 'ignore',
   vite: { plugins: [tailwindcss()] },
 });
