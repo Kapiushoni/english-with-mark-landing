@@ -1,10 +1,13 @@
-// Генерує public/og.png (1200×630) з SVG. Запуск: npm run og
+// Генерує public/og.png (UA) і public/og-en.png (EN), 1200×630, з SVG. Запуск: npm run og
 import sharp from 'sharp';
 import { fileURLToPath } from 'node:url';
 
-const out = fileURLToPath(new URL('../public/og.png', import.meta.url));
+const variants = [
+  { file: 'og.png', tagline: 'Розмовна англійська · A2 → B2 · Telegram' },
+  { file: 'og-en.png', tagline: 'Conversational English · A2 → B2 · Telegram' },
+];
 
-const svg = `
+const render = (tagline) => `
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#f6f1e9"/>
   <circle cx="1020" cy="120" r="260" fill="#f4c34a" opacity=".55"/>
@@ -18,7 +21,7 @@ const svg = `
   </text>
   <path d="M84 410 C 250 392, 420 388, 560 400" fill="none" stroke="#f4c34a" stroke-width="14" stroke-linecap="round"/>
 
-  <text x="80" y="478" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#6b6159">Розмовна англійська · A2 → B2 · Telegram</text>
+  <text x="80" y="478" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#6b6159">${tagline}</text>
 
   <rect x="80" y="520" width="420" height="64" rx="32" fill="#e2552c"/>
   <text x="290" y="562" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#ffffff">@mark_english_demo_bot</text>
@@ -33,5 +36,8 @@ const svg = `
   </g>
 </svg>`;
 
-await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(out);
-console.log('OG image written to', out);
+for (const { file, tagline } of variants) {
+  const out = fileURLToPath(new URL(`../public/${file}`, import.meta.url));
+  await sharp(Buffer.from(render(tagline))).png({ compressionLevel: 9 }).toFile(out);
+  console.log('OG image written to', out);
+}

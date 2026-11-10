@@ -7,7 +7,7 @@ const { t } = Astro.props;
 const site = Astro.site!;
 const path = Astro.url.pathname;
 const canonical = new URL(path, site).href;
-const og = new URL('/og.png', site).href;
+const og = new URL(t.meta.ogImage, site).href;
 const ogLocale = t.lang === 'uk' ? 'uk_UA' : 'en_US';
 ---
 <!doctype html>

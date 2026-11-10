@@ -6,6 +6,7 @@ const en: Dict = {
     title: 'English with Mark — conversational English from A2 to B2',
     description:
       'An online conversational English course: 3 lessons a week, live sessions every Sunday, reviewed homework and a community. Access via a Telegram bot, pay with Stars ⭐.',
+    ogImage: '/og-en.png',
   },
   nav: { audience: 'Who it’s for', inside: 'Program', pricing: 'Pricing', faq: 'FAQ', cta: 'Get access' },
   hero: {
